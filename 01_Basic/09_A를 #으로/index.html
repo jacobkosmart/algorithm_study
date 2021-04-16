@@ -1,0 +1,48 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer = ''
+      for (let x of s) {
+        if (x === 'A') answer += '#'
+        else answer += x
+      }
+      return answer;
+    }
+
+    let str = "BANANA";
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>
+
+
+<!-- replace, 정규표현식 사용 (더 권장됨) -->
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer=s; // string은 값만 복사 되는것임. array 처럼 주소 참조가 아닌것임. 
+      answer = answer.replace(/A/g, '#'); // replace(대상, 바꾸는것) 글로벌 g를 넣어서 다 적용되게 해야함 
+      return answer;
+    }
+    let str = "BANANA";
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>
