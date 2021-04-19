@@ -1,0 +1,51 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer = 0;
+      for (let x of s) {
+        if (x === x.toUpperCase()) answer++;
+      }
+      return answer;
+    }
+
+    let str = "KoreaTimeGood";
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>
+
+
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    // ASCII code에서 대문자는 65 ~ 90 즉, A~Z의 범위임 , 소문자는 97 ~ 122)는 알아 놓자!
+    function solution(s) {
+      let answer = 0;
+      for (let x of s) {
+      let num = x.charCodeAt();
+      if (num >= 65 && num <= 90) answer++;
+      }
+      return answer;
+    }
+
+    let str = "KoreaTimeGood";
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>
