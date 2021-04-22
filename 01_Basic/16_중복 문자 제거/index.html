@@ -1,0 +1,23 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer = 0;
+      let pos =s.indexOf('k'); // k 문자의의 위치 index 검색
+      while (pos !== -1){ // while loop 에서 pos 가 검색이 될때, (-1 이 아닐 경우)
+        answer++; // answer count 증가
+        pos = s.indexOf('k', pos + 1); //찾은 k 번째 다음부터 다시 검색
+      } // 더이상 못찾으면 pos 가 -1 이 되서 false 됨 -> break
+      return answer;
+    }
+    console.log(solution("ksekkset"));
+  </script>
+</body>
+
+</html>

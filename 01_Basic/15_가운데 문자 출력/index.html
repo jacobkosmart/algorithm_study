@@ -1,0 +1,21 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer;
+      let mid = Math.floor(s.length / 2);
+      if (s.length % 2 === 1) answer = s.substr(mid, 1); // 홀수 일때, substr()
+      else answer = s.substr(mid - 1, 2); // 짝수 일때, substr()
+      return answer;
+    }
+    console.log(solution("length"));
+  </script>
+</body>
+
+</html>
