@@ -1,0 +1,22 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer;
+      answer = s.filter((v, i) => { // filter(value, index) - 조건에 맞는것만 return 하는것
+        if (s.indexOf(v) === i) return v; // indexOf(v) 와 index 번호가 같은것만 출력함. -> 중복되는것 출력 안됨
+      });
+      return answer;
+    }
+    let str = ["good", "time", "good", "time", "student"];
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>
