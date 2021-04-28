@@ -1,0 +1,50 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer = "YES";
+      s = s.toLowerCase(); // str을 소문자로 통일
+      let n = s.length;
+      for (let i =0; i < Math.floor(n/2); i++) { // n 이 홀수 일때도 있으니 Math.floor 내림 사용
+        if (s[i] !== s[n-i-1]) return "NO" // i 가 0일때 가장 마지막 index 와 비교해야되기 때문에 전체길이 - 현재 index - 1 로 설정 그 다음 부터는 하나씩 앞당겨짐
+      }
+      return answer;
+    }
+
+    let str = "goooG";
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>
+
+
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer = "YES";
+      s = s.toLowerCase();
+      if (s.split("").reverse().join("") !== s) return "NO"; // str 을 하나씩 나누고, 뒤집어서, 다시 합치고 원래 str 과 비교해서 같지 않으면 NO retrun
+      return answer;
+    }
+
+    let str = "gooG";
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>
