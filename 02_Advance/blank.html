@@ -8,13 +8,22 @@
 <body>
   <script>
     function solution(s) {
-      let answer = "YES";
-      s = s.toLowerCase().replace(/[^a-z]/g, '');
-      if (s.split('').reverse().join('') !== s) return "NO"
+      let answer = ""
+      let cnt = 1;
+      let n = s.length;
+      s = s + " "
+      for(let i = 0; i < n -1; i++) {
+        if(s[i] === s[i+1]) cnt++;
+        else {
+          answer += s[i];
+          if(cnt > 1) answer += String(cnt)
+          cnt = 1;
+        }
+      }
       return answer;
     }
 
-    let str = "found7, time: study; Yduts; emit, 7Dnuof";
+    let str = "KKHSSSSSSSE";
     console.log(solution(str));
   </script>
 </body>
