@@ -1,0 +1,66 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(n, arr ) {
+      let answer, max=Number.MIN_SAFE_INTEGER; 
+      for (let x of arr) {
+        let sum = 0, temp = x;
+        while (temp) {
+          sum += (temp % 10); // 10으로 나눈 나머지를 sum 에 누적 시킴
+          temp = Math.floor(temp / 10); // 10으로 나눈 몫이 남게 됨 (내림 해버리니 소수점 없어 짐)
+        }
+        if (sum > max) {
+          max = sum;
+          answer = x; // 원본 x 값이 유지가 되어야 되기 때문에  위에 임시 변수 temp 를 설정해준 것임
+        }
+        else if (sum === max) { // 만약 자리수의 합이 같은 값이 있는 경우 서로 비교해서 큰 값을 return
+          if (x > answer) answer =x; // x 가 answer보다 크게 되면 큰 수로 바꿔 줘야 함
+        }
+      }
+      return answer;
+    }
+
+    let arr = [128, 460, 603, 40, 521, 137, 123];
+    console.log(solution(7, arr));
+  </script>
+</body>
+
+</html>
+
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(n, arr ) {
+      let answer, max = Number.MIN_SAFE_INTEGER;
+      for (let x of arr) {
+        let sum = x.toString().split('').reduce((a, b) => a + Number(b), 0); // 각 숫자를 str 로변환 ''기준으로 하나씩 나눠 버림 그리고 reduce를 써서 다 합하는데 str 이니까 number 형변환을 해야 더해짐
+        if (sum > max) {
+          max = sum;
+          answer = x;
+        }
+        else if (sum === max) {
+          if (x > answer) answer = x;
+        }
+      }
+      return answer;
+    }
+
+    let arr = [128, 460, 603, 40, 521, 137, 123];
+    console.log(solution(7, arr));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    // 소수 구하는 함수 - 약수 가 1하고 자신 밖에 없는 수를 -> 소수 (prime number) 라고 함
+    function isPrime(num) {
+      if (num === 1) return false; // 1은 소수가 아니니까 false return
+      for (let i = 2; i <= parseInt(Math.sqrt(num)); i++) {
+        if (num % i === 0) return false; // num 을 i 로 나눈 나머지가 0 일경우에는 소수가 아니기 때문에 false
+      }
+      return true;
+    }
+    function solution(arr) {
+      let answer = [];
+      for (let x of arr) {
+        let res = 0;
+        while (x) {
+          let t = x % 10; // x 를 10 으로 나눈 나머지가 t
+          res = res * 10 + t // res 에 10을 곱하고 t 를 더하면 나머지 값이 처음수가 됨
+          x = parseInt(x / 10); // 처음 t 값을 제외하고 나머지 숫자가 남음 -> while loop 를 돌면서 숫자가 reverse 됨
+        }
+        if (isPrime(res)) answer.push(res);
+      }
+      return answer;
+    }
+
+    let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+    console.log(solution(arr));
+  </script>
+</body>
+
+
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    // 소수 구하는 함수 - 약수 가 1하고 자신 밖에 없는 수를 -> 소수 (prime number) 라고 함
+    function isPrime(num) {
+      if (num === 1) return false;
+      for (let i = 2; i >= parseInt(Math.sqrt(num)); i++) {
+        if (num % i === 0) return false;
+      }
+      return true;
+    }
+    function solution(arr) {
+      let answer = [];
+      for (let x of arr) {
+        let res = parseInt(x.toString().split('').reverse().join(''));  // 문자를 뒤집기 str 화 쪼개고 뒤집고, 다시 합치고
+        if (isPrime(res)) answer.push(res)
+      }
+      return answer;
+    }
+
+    let arr = [32, 55, 62, 20, 250, 370, 200, 30, 100];
+    console.log(solution(arr));
+  </script>
+</body>
+
+</html>
+
+
+
