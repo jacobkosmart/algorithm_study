@@ -1,4 +1,6 @@
 # 멘토링
+- 블루투포스 대표적인 문제 형태임.  
+
 
 ##  🔍 문제 
 현수네 반 선생님은 반 학생들의 수학점수를 향상시키기 위해 멘토링 시스템을 만들려고 합니다.   
@@ -28,13 +30,58 @@ M번의 수학성적이 주어지면 멘토와 멘티가 되는 짝을 만들 �
 ### 🔹 출력 예제 1
 3  
 (3, 1), (3, 2), (4, 2)와 같이 3가지 경우의 (멘토, 멘티) 짝을 만들 수 있다.  
+풀이에선 추가로 tmp 값 변수를 설정해서 결과 값을 같이 확인 하였습니다.
 
 ----
 
 ##  📌 풀이
+![image](https://user-images.githubusercontent.com/28912774/116833866-87962280-abf6-11eb-875a-f76dd0374402.png)
 
+![image](https://user-images.githubusercontent.com/28912774/116833878-92e94e00-abf6-11eb-8ed2-808260363738.png)
 
 
 ```html
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
 
+<body>
+  <script>
+    function solution(test) {
+      let answer = 0, tmp = []; // 답은 멘토 맨티가 몇번 될 수 있냐의 횟수임, tmp 는 정답이 되는 경우의 수 출력
+      m = test.length; // 테스트 횟수 -> 3이 됨 
+      n = test[0].length // 학생 수 -> 4가 됨
+      // 4중 for 문 시작
+      for(let i = 1; i <= n; i++) { // i (멘토자리)1번 학생부터 n번 학생까지 for loop
+        for(let j = 1; j <= n; j++) { // j (멘티자리) 1번 학생부터 n번 
+          let cnt = 0; // count 0 초기화
+          for(let k = 0; k < m; k++) { // 테스트 케이스 case loop
+            let pi = pj =0; // 결과 등수
+            for(let s = 0; s < n; s++) { // 학생수 케이스 case loop
+              if(test[k][s] === i) pi = s; // i 번째 학생의 등수
+              if(test[k][s] === j) pj = s; // j 번째 학생의 등수
+            }
+            if(pi < pj) cnt ++; // i 가 맨토가 되려면 등수 pi 등수 값이 j 의 결과갑 pj 등수 값보다 작아야 함
+          }
+          if(cnt === m) { // 모든 테스트 조건이 cnt 값 이랑 같아야 됨, 즉 결과값 = 총 테스트에서 조건이 통과 되는 경우에만 return
+            tmp.push([i, j]) // 추가로 결과 값 출력
+            answer ++;
+          } 
+        }
+      }
+      console.log(tmp)
+      return answer;
+    }
+    let arr = [
+      [3, 4, 1, 2],
+      [4, 3, 2, 1],
+      [3, 1, 4, 2]
+    ];
+    console.log(solution(arr));
+  </script>
+</body>
 ```
+
+![image](https://user-images.githubusercontent.com/28912774/116833810-39811f00-abf6-11eb-9ef9-2aa2f350237a.png)
+

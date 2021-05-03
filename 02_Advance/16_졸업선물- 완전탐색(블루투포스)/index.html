@@ -1,0 +1,40 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(m, product) {
+      let answer =0;
+      let n = product.length; // 학생수
+      product.sort((a, b) => (a[0] + a[1]) - (b[0] + b[1])); // 총 비용으로 위에부터 콜백 함수 사용하여 오른차순 정렬
+      for(let i = 0; i < n; i++) {
+        let money = m - (product[i][0]/2 + product[i][1]); // 남은예산 = 총 예산 -(쿠폰을 적용한 i번째 0번 index의 상품가격 + 배송비)
+        let cnt = 1;
+        for(let j = 0; j < n; j++) {
+          if(j !== i && (product[j][0] + product[j][1]) > money) break; // 사려는 비용이 예산 보다 클경우에는, 더이상 살 수 없으니까 break 
+          if(j !== i && (product[j][0] + product[j][1]) <= money) { // i는 이미 위에서 샀기 때문에 포함 시키면 안됨 , 그리고 살려고 하는 비용이 남은 예산보다 작거나 같아야 됨
+            money -= (product[j][0] + product[j][1]); // 남은 금액에서 j번째 금액을 빼고 나머지 예산 return
+            cnt ++ ; // 상품을 1개 더 산거임
+          }
+        }
+        answer = Math.max(answer, cnt); // 가장 많이 살 수 있는 경우에 수니까 max 로 걸러줌
+      }
+      return answer;
+    }
+
+    let arr = [
+      [6, 6],
+      [2, 2],
+      [4, 3],
+      [4, 5],
+      [10, 3]
+    ];
+    console.log(solution(28, arr));
+  </script>
+</body>
+
+</html>
