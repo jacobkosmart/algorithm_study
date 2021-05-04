@@ -25,9 +25,37 @@
 ----
 
 ##  📌 풀이
+![image](https://user-images.githubusercontent.com/28912774/116966826-f99c6380-aceb-11eb-9cd2-180dfb717005.png)
 
+- [Set() 함수에 대해서 알아두기](https://velog.io/@dolarge/Java-Script-Set-%EA%B3%BC-Map)
+
+- [sort() 내림차순, 올림차순 알아두기](https://fluorite94.tistory.com/220)
 
 
 ```html
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
 
+<body>
+  <script>
+    function solution(n, k, card) {
+      let answer;
+      let tmp = new  Set(); // set 함수를 객체에 할당하는것
+      for(let i=0; i<n; i++ ) {
+        for(let j=i+1; j<n; j++) { // i 뒤편 부터 돌아야 조합이 되는것임
+          for(let k=j+1; k<n; k++) { // j 뒤편부터 돌기
+            tmp.add(card[i] + card[j] + card[k]) // set에  자료를 추가하는 메소드는 add() , 그리고 3개 뽑아 내는 조합임
+          }
+        }
+      }
+      let a = Array.from(tmp).sort((a, b) => b - a); // set()에서 는 sort()를 할 수 없기 때문에 배열화 Array.from 한 후에 sort(내림차순) 해 주면 됨
+      answer = a[k-1] // k번째 인데, index 상에서는 1개 작은 것이기 때문에 k-1
+      return answer;
+    }
+    let arr = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+    console.log(solution(10, 3, arr));
+  </script>
+</body>
 ```
