@@ -1,0 +1,26 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(k, arr) {
+      let answer, sum = 0;
+      for(let i=0; i<k; i++) sum += arr[i] // 첫번째 i=0 부터 i=2까지 3가지 값을 더한 sum return
+      answer = sum;
+      for(let i=k; i<arr.length; i++) { // i 가 k 번째 3부터 3개씩 쭉 도는 for 문 (sliding window 시작)
+        sum += (arr[i] - arr[i-k]) // 이전 sum 에 i 번째 - 3번째 전의 값을 해줘서 sum 으로 다시 return
+        answer = Math.max(answer, sum);
+      }
+      return answer;
+    }
+
+    let a = [12, 15, 11, 20, 25, 10, 20, 19, 13, 15];
+    console.log(solution(3, a));
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer;
+      let sH = new Map(); // sH (string Hash) 에 객체 생성자 호출
+      for(let x of s) { // string 탐색
+        if(sH.has(x)) sH.set(x, sH.get(x)+1) // sH 에 x 라는 문자의 key 가 있는지 물어보는거 존재하면 true, 없으면 false
+        // key 값이 있으면 x 란 값을 set 을 하게 되는데 x 에 기존값 get(x) 에 +1 하라는것임
+        else sH.set(x, 1); // x값이 없기 때문에 값을 만들고 처음 값을 1 로 하는것 
+      }
+      let max = Number.MIN_SAFE_INTEGER; // max 값 최소값으로 설정
+      for(let [key, val] of sH) { // sH 의 key 값과 value 값을 각각 key val 에 할당
+        if(val > max) { // val 값이 max 보다 클 경우
+          max = val; // max 값 설정
+          answer = key; // 답은 key 값임
+        }
+      }
+      return answer;
+    }
+
+    let str = "BACBACCACCBDEDE";
+    console.log(solution(str));
+  </script>
+</body>
+
+</html>

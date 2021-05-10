@@ -1,3 +1,5 @@
 {
-  "editor.fontFamily": "'hack', 'Consolas', 'Courier New', 'D2Coding', monospace"
+  "editor.fontFamily": "'hack','Droid Sans Mono', 'monospace', 'D2Coding',monospace, 'Droid Sans Fallback'",
+  "editor.fontWeight": "400",
+  "editor.tabSize": 2
 }
