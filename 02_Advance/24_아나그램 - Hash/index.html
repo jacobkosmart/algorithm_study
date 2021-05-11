@@ -1,0 +1,30 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(str1, str2) {
+      let answer = "YES";
+      let sH = new Map();
+      for (let x of str1) { // str 탐색 후, hash 값 만들기 (key, value)
+        if (sH.has(x)) sH.set(x, sH.get(x) + 1);
+        else sH.set(x, 1);
+      }
+      for (let x of str2) {
+        if(!sH.has(x) || sH.get(x) === 0) return "NO"; // str 2 에 str 1 의 key 값이 없을 땐 No return, 또는 다 상쇄 시켰는데 str1 의 key 값이 0 이여도 return NO 
+        else sH.set(x, sH.get(x) - 1) // -1 씩 빼줘서 상쇄 시키는 것임
+      }
+      return answer;
+    }
+
+    let a = "abaCC";
+    let b = "Caaab";
+    console.log(solution(a, b));
+  </script>
+</body>
+
+</html>
