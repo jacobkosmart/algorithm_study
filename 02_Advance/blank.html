@@ -7,44 +7,21 @@
 
 <body>
   <script>
-    function compareMaps(map1, map2) { // 먼저 sH 와 tH의 사이즈를 비교
-      if (map1.size !== map2.size) return false; // 만약 sH 와 tH 의 사이즈가 다를 경우에 는 바로 false return
-      // 사이즈가 이제 같으면 sH 와 tH 값이 같은지 비교 시작
-      for (let [key, val] of map1) {
-        // map 2 에 key 값이 있는지 보는거, tH 에 sH의 key 값이 없으면 false return 또는 key 는 있는 데 value 값이 서로 다르면 또 false 해줘야 함 tH 의 value 값과 sH 의 value 값이 서로 같지 않을 때, return false;
-        if (!map2.has(key) || map2.get(key) !== val) return false;  
+    function solution(s) {
+      let answer;
+      let stack = [];
+      for (let x of s) {
+        if (x === ')') {
+          while (stack.pop() !== '(');
+        }
+        else stack.push(x)
       }
-      return true; // 위의 조건들을 다 통과하면 true return 
-    }
-
-    function solution(s, t) {
-      let answer = 0;
-      let tH = new Map();
-      let sH = new Map();
-      for(let x of t) { // tH hash Map Counting
-        if(tH.has(x)) tH.set(x, tH.get(x) + 1);
-        else tH.set(x, 1);
-      }
-      let len = t.length - 1 // 하나 적게 해서 sH 의 sliding window 가 투포인터 설정 전에 하나 빼고 먼저 탐색 할수 있게 범위 설정
-      for (let i=0; i<len; i++) { // i 로 for 문 도는 거니까 s[i] 헷갈리지 않게 잘 넣기
-        if(sH.has(s[i])) sH.set(s[i], sH.get(s[i]) + 1);
-        else sH.set(s[i], 1);
-      }
-      // sliding window 그리고 two pointer 로 돌기
-      let lt = 0
-      for (let rt=len; rt<s.length; rt++) { // 나머지 하나 뺀것을 추가 하기
-        if (sH.has(s[rt])) sH.set(s[rt], sH.get(s[rt]) + 1);
-        else sH.set(s[rt], 1); 
-        if(compareMaps(sH, tH)) answer++; // 추가 하면 바로 비교 하기 두개를 비교했는데 같으면 answer cnt ++
-        sH.set(s[lt], sH.get(s[lt]) - 1) // 비교 했으니까 lt 부분을 빼줘야 함
-        if(sH.get(s[lt]) === 0) sH.delete(s[lt]); // 빼줬는데 만약 lt의 value 값이 0 이면 delete 해줘야 함
-        lt++; // lt  증가 해주고 다시 for loop 시작 
-      }
+      answer = stack.join('');
       return answer;
     }
-    let a = "bacaAacba";
-    let b = "abc";
-    console.log(solution(a, b));
+
+    let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+    console.log(solution(str));
   </script>
 </body>
 

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer = "YES"
+      let stack = [];
+      for(let x of s) { 
+        if(x === '(') stack.push(x); // x 가 ( 일때는 stack 에 push 넣음
+        else { // 아닐경우 ) 괄호 일경우
+          if(stack.length === 0) return "NO" // 뺄려고 했는데 stack 이 비어 있으면 바로 No return
+          stack.pop(); // stack 에서 최근에 더한 ( 를 빼줌
+        }
+      }
+      if(stack.length > 0) return "NO"; // ( 가 많은 상황 -> for loop 를 다 끝나도 stack 에 뭔가 남아 있으면 No return
+      return answer;
+    }
+
+    let a = "(()(()))(()";
+    console.log(solution(a));
+  </script>
+</body>
+
+</html> 
