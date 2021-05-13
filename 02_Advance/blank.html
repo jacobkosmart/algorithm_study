@@ -10,17 +10,21 @@
     function solution(s) {
       let answer;
       let stack = [];
-      for (let x of s) {
-        if (x === ')') {
-          while (stack.pop() !== '(');
+      for(let x of s) {
+        if (!isNaN(x)) stack.push(Number(x)); // x 가 숫자일 경우 (!isNaN) x를 계산 할 수 있게 number 로 변환 후, stack 에 push
+        else {
+          let rt = stack.pop(); // stack 에서 첫번 째 것 pop 한거가 rt -> 꺼내는거 순서가 중요함(빼기, 나누기가 있기 때문에)
+          let lt = stack.pop(); // stack 에서 두번 째 것 pop 한거가 lt
+          if (x === '+') stack.push(lt + rt); // 연산자 일경우 lt 와 rt 계산 해줌
+          else if (x === '-') stack.push(lt - rt);
+          else if (x === '*') stack.push(lt * rt);
+          else if (x === '/') stack.push(lt / rt);
         }
-        else stack.push(x)
       }
-      answer = stack.join('');
+      answer = stack[0]; // stack 에 남은 값이 answer 가 됨
       return answer;
     }
-
-    let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+    let str = "352+*9-";
     console.log(solution(str));
   </script>
 </body>

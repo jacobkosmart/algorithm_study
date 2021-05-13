@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(board, moves) {
+      let answer = 0;
+      let stack = [];
+      for(let x of moves) { // 크래인을 하나씩 탐색시작
+        for(let i=0; i<board.length; i++) { // i 증가하면서 탐색 시작
+          if(board[i][x-1] !== 0) { // 0 이 아닌것 인형을 만난것
+            let tmp = board[i][x-1]; // 변수 지정 (인형 꺼낸 것임)
+            board[i][x-1] = 0; // 인형을 꺼내면 그자리를 0 으로 만들어서 빈공간 만들기
+            if(tmp === stack[stack.length-1]) { // 꺼낸 인형과 stack 에 쌓인 최고 높이 (index 번호) 와 같을 경우
+              stack.pop(); // 뽑힌 인형과 같으니까, stack 에서 지워버림 pop
+              answer += 2; // 없어진 인형의 갯수 2개 (뽑힌거 + stack에서 지워진거) answer 에 누적
+            }
+            else stack.push(tmp); // 뽑힌 인형이 stack 에 있는것과 같지 않으니까 그 대로 stack 에 누적 시킴
+            break; // for loop 가 먼추게 break 해줘야 한다 (왜냐면, 0 이 아닌 true 인 값인 것을 더 꺼내니까 위 있는 하나만 꺼내기 위해서 for loop break)
+          }
+        }
+      };
+      return answer;
+    }
+
+    let a = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 1, 0, 3],
+      [0, 2, 5, 0, 1],
+      [4, 2, 4, 4, 2],
+      [3, 5, 1, 3, 1]
+    ];
+
+    let b = [1, 5, 3, 5, 1, 2, 1, 4];
+    console.log(solution(a, b));
+  </script>
+</body>
+
+</html>
