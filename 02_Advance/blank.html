@@ -8,24 +8,26 @@
 <body>
   <script>
     function solution(s) {
-      let answer;
+      let answer = 0;
       let stack = [];
-      for(let x of s) {
-        if (!isNaN(x)) stack.push(Number(x)); // x 가 숫자일 경우 (!isNaN) x를 계산 할 수 있게 number 로 변환 후, stack 에 push
+      for (let i=0; i<s.length; i++) {
+        if (s[i] === '(') stack.push(s[i]) // '(' 를 만나면 일단 stack에 push
         else {
-          let rt = stack.pop(); // stack 에서 첫번 째 것 pop 한거가 rt -> 꺼내는거 순서가 중요함(빼기, 나누기가 있기 때문에)
-          let lt = stack.pop(); // stack 에서 두번 째 것 pop 한거가 lt
-          if (x === '+') stack.push(lt + rt); // 연산자 일경우 lt 와 rt 계산 해줌
-          else if (x === '-') stack.push(lt - rt);
-          else if (x === '*') stack.push(lt * rt);
-          else if (x === '/') stack.push(lt / rt);
+          if (s[i-1] === '(') { // i 번째 앞 부분이 '(' 일경우에 는 레이저임
+            stack.pop(); // stack 에서 하나 빼주고
+            answer += stack.length; // stack 에 길이 누적 
+          }
+          else { // i 번째 앞 부분이 ')' 일경우는 쇠막대기의 끝 부분임
+            stack.pop(); // stack 에서 하나 빼주고
+            answer++; // stack 에 + 1
+          }
         }
       }
-      answer = stack[0]; // stack 에 남은 값이 answer 가 됨
       return answer;
     }
-    let str = "352+*9-";
-    console.log(solution(str));
+
+    let a = "()(((()())(())()))(())";
+    console.log(solution(a));
   </script>
 </body>
 

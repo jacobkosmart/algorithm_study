@@ -1,0 +1,34 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(s) {
+      let answer = 0;
+      let stack = [];
+      for (let i=0; i<s.length; i++) {
+        if (s[i] === '(') stack.push(s[i]) // '(' 를 만나면 일단 stack에 push
+        else {
+          if (s[i-1] === '(') { // i 번째 앞 부분이 '(' 일경우에 는 레이저임
+            stack.pop(); // stack 에서 하나 빼주고
+            answer += stack.length; // stack 에 길이 누적 
+          }
+          else { // i 번째 앞 부분이 ')' 일경우는 쇠막대기의 끝 부분임
+            stack.pop(); // stack 에서 하나 빼주고
+            answer++; // stack 에 + 1
+          }
+        }
+      }
+      return answer;
+    }
+
+    let a = "()(((()())(())()))(())";
+    console.log(solution(a));
+  </script>
+</body>
+
+</html>
