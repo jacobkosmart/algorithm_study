@@ -1,0 +1,25 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(n, k) {
+      let answer;
+      let queue = Array.from({length:n}, (v, i) => i + 1); // 길이가 n 크기 유사 배열 객체 생성 후 value, index 설정 후 콜백 함수 에서 value 값이 i 는 0 이니까 i+1 해서 1부터 8싸지의 array를 생성
+      while(queue.length) { // queue 의 length 가 있을 때까지 가 ture 즉, 1개 남을 때까지 while loop 이 된다고 보면됨
+        for(let i=0; i<k-1; i++) queue.push(queue.shift()); // 1번째 value 값을 shift(기존 array 에서 지운다음) 에 뒤에다 push 해주는것 을 k-1 번째 까지 반복(1번왕자, 2번 왕자)
+        queue.shift(); // k 번째 (3번 왕자는 그냥 array 에서 제외되는 것임)
+        if(queue.length === 1) answer=queue.shift(); // array에 1개 값이 남을때 그 남은 값을 answer 로 return
+      }
+      return answer;
+    }
+
+    console.log(solution(8, 3));
+  </script>
+</body>
+
+</html>

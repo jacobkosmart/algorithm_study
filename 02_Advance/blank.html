@@ -7,27 +7,20 @@
 
 <body>
   <script>
-    function solution(s) {
-      let answer = 0;
-      let stack = [];
-      for (let i=0; i<s.length; i++) {
-        if (s[i] === '(') stack.push(s[i]) // '(' 를 만나면 일단 stack에 push
-        else {
-          if (s[i-1] === '(') { // i 번째 앞 부분이 '(' 일경우에 는 레이저임
-            stack.pop(); // stack 에서 하나 빼주고
-            answer += stack.length; // stack 에 길이 누적 
-          }
-          else { // i 번째 앞 부분이 ')' 일경우는 쇠막대기의 끝 부분임
-            stack.pop(); // stack 에서 하나 빼주고
-            answer++; // stack 에 + 1
-          }
+    function solution(need, plan) {
+      let answer = "YES";
+      let queue = Array.from(need);
+      for(let x of plan) {
+        if(queue.includes(x)) {
+          if(x !== queue.shift()) return "NO";
         }
       }
+      if(queue.length > 0) return "NO";
       return answer;
     }
-
-    let a = "()(((()())(())()))(())";
-    console.log(solution(a));
+    let a = "CBA";
+    let b = "CBDAGE";
+    console.log(solution(a, b));
   </script>
 </body>
 

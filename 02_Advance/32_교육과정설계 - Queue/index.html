@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(need, plan) {
+      let answer = "YES";
+      let queue = Array.from(need); // need 를 array 로 만들기 queue = need.split(''); 로 해도 array 로 만들 수 있음
+      for(let x of plan) {
+        if (queue.includes(x)) { // queue에 x 가 있는지 탐색 있으면 true
+          if(x !==queue.shift()) return "NO"; // queue에 x가 있는데 순서대로 와야 되니 (shift) 처음 값이 x 가 아닐경우 (x가 첫번째가 아니라 2번째 이상에 있는 경우)
+        }
+      }
+      if(queue.length > 0) return "NO"; // 탐색을 다 했는데도 queue 에 값이 남아 있다면 return "no"
+      return answer;
+    }
+    let a = "CBA";
+    let b = "CADACE";
+    console.log(solution(a, b));
+  </script>
+</body>
+
+</html>
