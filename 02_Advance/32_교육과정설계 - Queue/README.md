@@ -38,6 +38,10 @@ YES
 
 ## 📌 풀이
 
+- `array.includes(x)` 을 통한 탐색... -> array 안에 x 라는 value 가 있을 경우 true return
+
+![image](https://user-images.githubusercontent.com/28912774/118422759-cbad1b00-b6fe-11eb-9eeb-c128fe999a5a.png)
+
 ![11](https://user-images.githubusercontent.com/28912774/118421395-18432700-b6fc-11eb-8130-fa20b9832955.jpg)
 
 ![22](https://user-images.githubusercontent.com/28912774/118421405-1bd6ae00-b6fc-11eb-8f71-f3df05f70cc2.jpg)
