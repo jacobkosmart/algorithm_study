@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(arr) {
+      let answer = arr; // arr 을 얕은 복사
+      for(let i=0; i<arr.length; i++) {
+        let idx = i; // 최소값의 위치를 index 를 저장하는 idx 
+        for(let j=i+1; j<arr.length; j++) {
+          if(arr[j] < arr[idx]) idx = j; // 탐색된 j 값을 idx 값과 비교해서 작으면 최소값이 j 가 되는것
+        }
+        [arr[i], arr[idx]] = [arr[idx], arr[i]]; // i 값 과 idx 값을 서로 바꿔주는 것
+      }
+      return answer;
+    }
+
+    let arr = [13, 5, 11, 7, 23, 15];
+    console.log(solution(arr));
+  </script>
+</body>
+
+</html>

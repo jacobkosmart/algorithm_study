@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(arr) {
+      let answer = arr;
+      for(let i=0; i<arr.length-1; i++) { // j 와 비교하는것이기 때문에 전체 크기의 -1 까지만 돌면 됨
+        for(let j=0; j<arr.length-i-1; j++) { // j는 마지막 값이 정해지기 때문에 j 가 for loop 돌면서 맨 뒤에 있는것은 이미 정해져서 픽스 되었기 때문에 비교 할 필요는 없음
+          if(arr[j] > arr[j+1]) { // j for loop 돌면서 뒤에것과 비교 하면서 작으면 앞으로 바꿔줘야함
+            [arr[j], arr[j+1]] = [arr[j+1], arr[j]]; // j for loop 돌때마다 바꿔 줘야 하니까 성능상에는 좋지는 않다
+          }
+        }
+      }
+      return answer;
+    }
+
+    let arr = [13, 5, 11, 7, 23, 15];
+    console.log(solution(arr));
+  </script>
+</body>
+
+</html>
