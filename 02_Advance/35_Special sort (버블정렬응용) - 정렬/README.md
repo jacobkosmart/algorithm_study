@@ -14,7 +14,7 @@ N개의 정수가 입력되면 당신은 입력된 값을 정렬해야 한다.
 
 ### 🔹 출력 설명
 
-정렬된 결과를 출력한다
+정렬된 결과를 출력한다.
 
 ### 🔹 입력예제 1
 
@@ -36,28 +36,28 @@ N개의 정수가 입력되면 당신은 입력된 값을 정렬해야 한다.
 
 ```html
 <head>
-	<meta charset="UTF-8" />
-	<title>출력결과</title>
+  <meta charset="UTF-8" />
+  <title>출력결과</title>
 </head>
 
 <body>
-	<script>
-		function solution(arr) {
-			let answer = arr;
-			for (let i = 0; i < arr.length - 1; i++) {
-				for (let j = 0; j < arr.length - i - 1; j++) {
-					if (arr[j] > 0 && arr[j + 1] < 0) {
-						// 앞쪽수가 양수고, 뒤쪽수가 음수일 경우
-						[arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // 앞에와 뒤에를 바꾸는 것
-					}
-				}
-			}
-			return answer;
-		}
+  <script>
+    function solution(arr) {
+      let answer = arr;
+      for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+          if (arr[j] > 0 && arr[j + 1] < 0) {
+            // 앞쪽수가 양수고, 뒤쪽수가 음수일 경우
+            [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]]; // 앞에와 뒤에를 바꾸는 것
+          }
+        }
+      }
+      return answer;
+    }
 
-		let arr = [1, 2, 3, -3, -2, 5, 6, -6];
-		console.log(solution(arr));
-	</script>
+    let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+    console.log(solution(arr));
+  </script>
 </body>
 ```
 
@@ -65,26 +65,26 @@ N개의 정수가 입력되면 당신은 입력된 값을 정렬해야 한다.
 
 ```html
 <head>
-	<meta charset="UTF-8" />
-	<title>출력결과</title>
+  <meta charset="UTF-8" />
+  <title>출력결과</title>
 </head>
 
 <body>
-	<script>
-		function solution(arr) {
-			let answer = []; // 새로운 arr 할당
-			for (let x of arr) {
-				// x 개씩 탐색해서
-				if (x < 0) answer.push(x); // 음수일 경우 하나씩 answer 에 push
-			}
-			for (let x of arr) {
-				if (x > 0) answer.push(x); // 나머지 숫자 (양수) answer 에 push
-			}
-			return answer;
-		}
+  <script>
+    function solution(arr) {
+      let answer = []; // 새로운 arr 할당
+      for (let x of arr) {
+        // x 개씩 탐색해서
+        if (x < 0) answer.push(x); // 음수일 경우 하나씩 answer 에 push
+      }
+      for (let x of arr) {
+        if (x > 0) answer.push(x); // 나머지 숫자 (양수) answer 에 push
+      }
+      return answer;
+    }
 
-		let arr = [1, 2, 3, -3, -2, 5, 6, -6];
-		console.log(solution(arr));
-	</script>
+    let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+    console.log(solution(arr));
+  </script>
 </body>
 ```

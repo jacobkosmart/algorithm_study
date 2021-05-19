@@ -11,7 +11,7 @@
       let answer = arr;
       for(let i=0; i<arr.length-1; i++) {
         for(let j=0; j<arr.length-i-1; j++) {
-          if(arr[j] > 0 && arr[j+1] < 0) { // 앞쪽수가 양수고, 뒤쪽수가 음수일 경우
+          if(arr[j] > 0 && arr[j+1] < 0) { // 앞쪽수가 양수고, 뒤쪽수가 음수일 경우 적용
             [arr[j], arr[j+1]] = [arr[j+1], arr[j]]; // 앞에와 뒤에를 바꾸는 것
           }
         }
