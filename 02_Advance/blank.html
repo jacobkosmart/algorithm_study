@@ -9,17 +9,18 @@
   <script>
     function solution(arr) {
       let answer = arr;
-      for(let i=0; i<arr.length-1; i++) {
-        for(let j=0; j<arr.length-i-1; j++) {
-          if(arr[j] > 0 && arr[j+1] < 0) { // 앞쪽수가 양수고, 뒤쪽수가 음수일 경우
-            [arr[j], arr[j+1]] = [arr[j+1], arr[j]]; // 앞에와 뒤에를 바꾸는 것
-          }
+      for (let i = 0; i < arr.length; i++) {
+        let tmp = arr[i], j;
+        for (j = i - 1; j >= 0; j--) {
+          if (arr[j] > tmp) arr[j+1] = arr[j];
+          else break;
         }
+        arr[j+1] = tmp; 
       }
       return answer;
     }
 
-    let arr = [1, 2, 3, -3, -2, 5, 6, -6];
+    let arr = [11, 7, 5, 6, 10, 9];
     console.log(solution(arr));
   </script>
 </body>
