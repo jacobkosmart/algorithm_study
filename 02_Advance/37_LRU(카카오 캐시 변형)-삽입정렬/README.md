@@ -54,7 +54,80 @@
 ##  📌 풀이
 
 
+1. 삽입 정렬로 풀이
 
 ```html
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
 
+<body>
+  <script>
+    function solution(size, arr) {
+      let answer = Array.from({length:size}, () => 0); // answer(cash memory) 를 5개 크기의 0으로 초기화
+      for(let x of arr) {
+        let pos = -1;
+        // hit 인지 아닌지 보는것
+        for(let i = 0; i < size; i++) if(x === answer[i]) pos = i; // 만약 answer 에 x 값이 있으면 hit 니까 pos를 hit 부분인 i 로 설정
+        if(pos === -1) { // hit 가 아닌경우 miss 난 상황임
+          for(let i = size-1; i >= 1; i--) {
+          answer[i] = answer[i-1];
+          }
+        }
+        else { // hit 난 상황임
+          for(let i = pos; i >= 1; i--) {
+          answer[i] = answer[i-1];
+          }
+        } 
+        answer[0] = x;
+      }
+      return answer;
+    }
+
+    let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+    console.log(solution(5, arr));
+  </script>
+</body>
+```
+
+2. 내장함수 unshit(), splice(), pop() 을 사용해서 풀이
+
+![image](https://user-images.githubusercontent.com/28912774/119210409-f7f1de80-bae6-11eb-88ed-b65c1d8ce2ef.png)
+
+
+![image](https://user-images.githubusercontent.com/28912774/119210426-093aeb00-bae7-11eb-8855-9a7abefc6241.png)
+
+
+![image](https://user-images.githubusercontent.com/28912774/119210448-148e1680-bae7-11eb-9aa5-406bb14bda73.png)
+
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(size, arr) {
+      let answer = Array.from({length: size}, () => 0);
+      for(let x of arr) {
+        let pos = -1;
+        for(let i=0; i<size; i++) if(x === answer[i]) pos= i; // hti 인 경우
+        if(pos === -1) { // miss 난 상황
+        answer.unshift(x); // 맨앞에다가 넣어 주는것 unshift 하고 그전에 있던 숫자들은 한칸씩 밀려가는것. 근데 계속하면 arr 가 계속 커짐
+        if(answer.length > size)  answer.pop() // answer 가 size 보다 크면 맨뒤에 있는것을 pop() 해주면 자동으로 저장해줌
+        }
+        else { // hit 난 상황
+          answer.splice(pos, 1); // pos index 의 value 값을 지워 버려라
+          answer.unshift(x); // 그다음에 앞에 x 넣어주고 하나씩 밀어버리기
+        }
+      }
+      return answer;
+    }
+    let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+    console.log(solution(5, arr));
+  </script>
+</body>
 ```

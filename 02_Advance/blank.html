@@ -7,21 +7,24 @@
 
 <body>
   <script>
-    function solution(arr) {
-      let answer = arr;
-      for (let i = 0; i < arr.length; i++) {
-        let tmp = arr[i], j;
-        for (j = i - 1; j >= 0; j--) {
-          if (arr[j] > tmp) arr[j+1] = arr[j];
-          else break;
-        }
-        arr[j+1] = tmp; 
+    function solution(size, arr) {
+      let answer = Array.from({length: size}, () => 0 )
+      let pos = -1
+      for(let x of arr){
+        for(let i=0; i < size; i++) if(x === arr[i]) pos = i;
+          if(pos === 0) {
+            answer.shift(x);
+            if(answer.length > size) answer.pop();
+          }
+          else {
+            answer.splice(pos, 1);
+            answer.shift(x);
+          }
       }
       return answer;
     }
-
-    let arr = [11, 7, 5, 6, 10, 9];
-    console.log(solution(arr));
+    let arr = [1, 2, 3, 2, 6, 2, 3, 5, 7];
+    console.log(solution(5, arr));
   </script>
 </body>
 
