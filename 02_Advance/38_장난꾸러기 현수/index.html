@@ -1,0 +1,24 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(arr) {
+      let answer = [];
+      let sortArr = arr.slice(); // arr 깊은 복사 -> 완벽하게 원본과 사본을 나눠 복사하는 방법
+      sortArr.sort((a, b) => a - b); // 숫자 오름차순 정렬 (참고로 내림차수는 b - a)
+      for(let i = 0; i < arr.length; i++) {
+        if(arr[i] !== sortArr[i]) answer.push(i + 1); // arr 랑 sortArr 랑 비교해서 같지 않으면 현수와 짝궁인데 index 번호에서 + 1을 해주면 진짜 위치가 나타남
+      }
+      return answer;
+    }
+    let arr = [120, 125, 152, 130, 135, 135, 143, 127, 160];
+    console.log(solution(arr));
+  </script>
+</body>
+
+</html>
