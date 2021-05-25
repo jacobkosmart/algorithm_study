@@ -40,7 +40,7 @@
 
 - arr 를 얕은복사 하게 되면 나중에 비교했을때, 동일하게 나와서 비교가 안됨!! -> arr.slice() 통한 깊은 복사를 해줘야 함 
 
-> [얕은복사, 깊은복사 자세히 알기..](https://bbaktaeho-95.tistory.com/37)
+> [얕은복사, 깊은복사 자세히 알기..](https://bbaktaeho-95.tistory.com/37){:target="\_blank"}
 
 ![11](https://user-images.githubusercontent.com/28912774/119284251-34a20f00-bc7a-11eb-9e58-a897d57aaec9.jpg)
 
