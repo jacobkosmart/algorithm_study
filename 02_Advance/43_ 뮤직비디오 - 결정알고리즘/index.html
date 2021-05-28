@@ -1,0 +1,42 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function count(songs, capacity) { // 연속으로 저장을 하게 되면 몇장이 필요한지 count 해주는것
+      let cnt = 1, sum = 0; // cnt 는 dvd 장수 임 적어도 한장은 필요하기 때문에 1로 초기화
+      for(let x of songs) {
+        if(sum + x > capacity) { // 1부터 sum 에 누적해서 더해서 capacity (mid) 보다 크게 되면 더이상 dvd 에 저장 할 수 없게 되는 것
+          cnt++; //  capacity (mid) 값이 초과 되었을 경우 새로운 dvd 장수 추가  
+          sum = x; // 초과된 부분부터 다시 sum 시작
+        }
+        else sum += x; // capacity 보다 크지 않기 때문에 x 를 누적해서 더해줌
+      }
+      return cnt;
+    }
+
+    function solution(m, songs) {
+      let answer; // DVD안에는 songs 노래 순서 대로 해야 되기 때문에 정렬 하면 안됨
+      let lt = Math.max(...songs); // 전개 연산자를 사용해서 arr 를 쭉 나열해준다 마치 (songs[0], songs[1] ... songs[8])
+      let rt = songs.reduce((a, b) => a + b, 0); // reduce를 사용해서 0부터 하나씩 쭉 더해주는것 -> arr 안에 sum 을 주는것 
+      while(lt <= rt) {
+        let mid = parseInt((lt + rt) / 2);
+        if(count(songs, mid) <= m) {
+          answer = mid;
+          rt = mid - 1;
+        }
+        else lt = mid + 1;
+      }
+      return answer;
+    }
+
+    let arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    console.log(solution(3, arr));
+  </script>
+</body>
+
+</html>
