@@ -1,0 +1,27 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(n) {
+      let answer = "";
+      function DFS(n) {
+        if(n === 0) return; // 재귀 함수가 끝나는 지점 설정 -> n = 0 이 되면 함수 종료
+        else {
+          DFS(parseInt(n / 2)); // 2로 나눈 몫으로 넘어감
+          answer += (n % 2); // answer 에 2로 나눈 나머지 누적  
+        }
+      }
+      DFS(n); // 제귀 함수 DFS(n) 실행
+      return answer;
+    }
+
+    console.log(solution(11));
+  </script>
+</body>
+
+</html>
