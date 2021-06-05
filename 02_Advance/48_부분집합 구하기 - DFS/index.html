@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(n) {
+      let answer= [];
+      let ch = Array.from({length: n + 1}, () => 0); // check arr 생성 길이가 4인 모두가 0이 된거임
+      function DFS(v) {
+        if(v === n + 1) { // DFS 탐색 종료 될때
+          let tmp = ""; 
+          for(let i = 1; i <=n; i++) { // n 만큼 반복해서
+            if(ch[i] === 1) tmp += i + " "; // ch arr 에서 1이 포함된경우 tmp 의 누적
+          }
+          if(tmp.length > 0) answer.push(tmp.trim()); // 공란을 제외한 tmp 를 빈칸을 없애서 answer 에 push 
+        }
+        else {
+          ch[v] = 1; // ch arr에 1을 포함시킨 경우
+          DFS(v + 1);
+          ch[v] = 0; // ch arr에 1을 포함시키지 않은경우
+          DFS(v + 1);
+        }
+      }
+      DFS(1);
+      return answer;
+    }
+
+    console.log(solution(3));
+  </script>
+</body>
+
+</html>

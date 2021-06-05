@@ -7,81 +7,30 @@
 
 <body>
   <script>
-    function solution(v) {
-      let answer;
+    function solution(n) {
+      let answer = [];
+      let ch = Array.from({length: n + 1}, () => 0);
       function DFS(v) {
-        if(v > 7) return;
+        if(v === n +1) {
+          let tmp = "";
+          for(let i = 1; i<=n; i++) {
+            if(ch[i] === 1) tmp += i + " ";
+          }
+          if(tmp.length > 0) answer.push(tmp.trim())
+        }
         else {
-          console.log(v); // 출력을 제일 위에다가 하면 전위 순회가 됨
-          DFS(v * 2); // 왼쪽 자식 실행
-          DFS(v * 2 + 1); // 오른쪽 자식 실행
+          ch[v] = 1;
+          DFS(v + 1);
+          ch[v] = 0;
+          DFS(v + 1);
         }
       }
-      DFS(v);
+      DFS(1);
       return answer;
     }
 
-    console.log(solution(1));
+    console.log(solution(3));
   </script>
 </body>
 
 </html>
-
-
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>출력결과</title>
-</head>
-
-<body>
-  <script>
-    function solution(v) {
-      let answer;
-      function DFS(v) {
-        if(v > 7) return;
-        else {
-          DFS(v * 2); // 왼쪽 자식 실행
-          console.log(v); // 출력 을 중간에 하게 되면 중위순회가 됨
-          DFS(v * 2 + 1); // 오른쪽 자식 실행
-        }
-      }
-      DFS(v);
-      return answer;
-    }
-
-    console.log(solution(1));
-  </script>
-</body>
-
-</html> 
-
-<html>
-
-<head>
-  <meta charset="UTF-8">
-  <title>출력결과</title>
-</head>
-
-<body>
-  <script>
-    function solution(v) {
-      let answer;
-      function DFS(v) {
-        if(v > 7) return;
-        else {
-          DFS(v * 2); // 왼쪽 자식 실행
-          DFS(v * 2 + 1); // 오른쪽 자식 실행
-          console.log(v); // 출력을 마지막에 하게 되면 후위순회가 됨
-        }
-      }
-      DFS(v);
-      return answer;
-    }
-
-    console.log(solution(1));
-  </script>
-</body>
-
-</html> 
