@@ -1,5 +1,7 @@
 {
   "editor.fontFamily": "'hack','Droid Sans Mono', 'monospace', 'D2Coding',monospace, 'Droid Sans Fallback'",
   "editor.fontWeight": "400",
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true
 }

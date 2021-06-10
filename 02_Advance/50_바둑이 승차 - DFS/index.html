@@ -1,0 +1,31 @@
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(c, arr) {
+      let answer = Number.MIN_SAFE_INTEGER;
+      let n = arr.length;
+
+      function DFS(l, sum) {
+        if (sum > c) return; // c 트럭의 무게에 sum 을 넘어가서 초과 하면 return 해서 재귀함수 종료 시킴
+        if (l === n) {
+          answer = Math.max(answer, sum); // answer 와 sum 의 최대값을 비교해서 answer 로 변환
+        } else {
+          DFS(l + 1, sum + arr[l]); // 하나씩 level 증가 할때, 처음 수가 포함될 경우 arr 값을 누적
+          DFS(l + 1, sum); // 하나씩 증가, 처음 수가 포함되지 않은 경우의 수
+        }
+      }
+      DFS(0, 0);
+      return answer;
+    }
+    let arr = [81, 58, 42, 33, 61];
+    console.log(solution(259, arr));
+  </script>
+</body>
+
+</html>
