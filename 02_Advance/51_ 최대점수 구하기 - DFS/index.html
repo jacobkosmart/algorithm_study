@@ -9,18 +9,18 @@
   <script>
     function solution(m, ps, pt) {
       let answer = Number.MIN_SAFE_INTEGER;
-      let n = ps.length;
+      let n = ps.length
+
       function DFS(l, sum, time) {
-        if(time > m) return;
-        if (l ===n) {
+        if (time > m) return;
+        if (l === n) {
           answer = Math.max(answer, sum);
-        } 
-        else {
-          DFS(l + 1, sum + ps[l], time + pt[l]);
+        } else {
+          DFS(l + 1, sum + ps[l], time + pt[l])
           DFS(l + 1, sum, time)
         }
       }
-      DFS(0, 0, 0);
+      DFS(0, 0, 0)
       return answer;
     }
 
