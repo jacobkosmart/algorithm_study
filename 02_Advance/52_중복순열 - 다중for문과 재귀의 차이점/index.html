@@ -9,15 +9,15 @@
   <script>
     function solution(n, m) {
       let answer = [];
-      let tmp = Array.from({length:m}, () => 0);
+      let tmp = Array.from ({length:m}, () => 0); // 0으로 초기화 된 빈 arr 생성
       function DFS(l) {
-        if (l === m) {
-          answer.push(tmp.slice());
+        if(l === m) {
+          answer.push(tmp.slice()); // 깊은 복사로 slice() 사용해서 tmp push
         }
         else {
-          for (let i = 1; i <= n; i++) {
+          for(let i = 1; i <= n; i++) {
             tmp[l] = i
-            DFS(l + 1);
+            DFS(l + 1)
           }
         }
       }
@@ -25,7 +25,7 @@
       return answer;
     }
 
-    console.log(solution(3, 2));
+    console.log(solution(4, 3));
   </script>
 </body>
 
