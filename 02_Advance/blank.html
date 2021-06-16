@@ -7,25 +7,27 @@
 
 <body>
   <script>
-    function solution(n, m) {
-      let answer = [];
-      let tmp = Array.from({length:m}, () => 0);
-      function DFS(l) {
-        if (l === m) {
-          answer.push(tmp.slice());
-        }
-        else {
-          for (let i = 1; i <= n; i++) {
-            tmp[l] = i
-            DFS(l + 1);
+    function solution(m, arr) {
+      let answer = Number.MAX_SAFE_INTEGER;
+      let n = arr.length;
+
+      function DFS (l, sum) {
+        if(sum > m) return;
+        if(l >= answer) return;
+        if (sum === m) {
+          answer = Math.min(answer, l);
+        } else {
+          for (let i = 0; i < n; i++) {
+            DFS(l + 1, sum + arr[i])
           }
         }
       }
-      DFS(0);
+      DFS(0, 0);
       return answer;
     }
 
-    console.log(solution(3, 2));
+    let arr = [1, 2, 5];
+    console.log(solution(15, arr));
   </script>
 </body>
 

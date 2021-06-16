@@ -1,0 +1,35 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(m, arr) {
+      let answer = Number.MAX_SAFE_INTEGER;
+      let n = arr.length;
+
+      function DFS(l, sum) {
+        if (sum > m)
+      return; // 무한으로 도는것을 방지 하기위해서 왜냐면 sum === m 을 건너 뛰어서 조건이 안맞을때, 계속 for loop 가 돌 수 있기 때문에 sum 이 m 보다 크게 될 경우에 break 를 걸어줘야 함
+        if (l >= answer) return; // 경우에 수를 줄이는것 l 보다 answer 가 크거나 같게 되면 실행되지 않고 if 문 빠져나가는것
+        if (sum === m) {
+          answer = Math.min(answer, l)
+        } else {
+          for (let i = 0; i < n; i++) {
+            DFS(l + 1, sum + arr[i]);
+          }
+        }
+      }
+      DFS(0, 0);
+      return answer;
+    }
+
+    let arr = [1, 2, 5];
+    console.log(solution(15, arr));
+  </script>
+</body>
+
+</html>
