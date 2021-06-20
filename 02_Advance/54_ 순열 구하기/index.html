@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>출력결과</title>
+</head>
+
+<body>
+  <script>
+    function solution(m, arr) {
+      let answer = [];
+      n = arr.length;
+      let ch = Array.from({
+        length: n
+      }, () => 0);
+      let tmp = Array.from({
+        length: m
+      }, () => 0);
+
+      function DFS(l) {
+        if (l === m) {
+          answer.push(tmp.slice()); // answer 에 깊은 복사 
+        } else {
+          for (let i = 0; i < n; i++) {
+            if (ch[i] === 0) { // 순열의 전형적인 구조임 거의 외우다 시피 읽혀야 함. ch 에 0으로 비어있을 경우
+              ch[i] = 1; // 1로 바꿔주고
+              tmp[l] = arr[i] // tmp arr 에다가 arr 의 value 값을 넣어줌
+              DFS(l + 1); // 1단계 level 증가
+              ch[i] = 0; // 다시 check arr 0으로 초기화시킴
+            }
+          }
+        }
+      }
+      DFS(0);
+      return answer;
+    }
+
+    let arr = [3, 6, 9];
+    console.log(solution(2, arr));
+  </script>
+</body>
+
+</html>
