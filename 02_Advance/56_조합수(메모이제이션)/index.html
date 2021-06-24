@@ -8,10 +8,19 @@
 <body>
   <script>
     function solution(n, r) {
-      
+      let answer;
+      // 문제에서 제시한 최대 입력값인 33이니까  여유있게 행의 크기가 35개, 열의 크기가 35인 dynamic arr 생성해서 그안에 0으로 채운것 생성
+      let dy = Array.from(Array(35), () => Array(35).fill(0)); 
+      function DFS(n, r) {
+        if(dy[n][r] > 0) return dy[n][r]; // 재귀가 돌때 dy 안에 값이 있는경우에는 재귀 돌지 말고 dy 안에 있는 값을 retun 해줌
+        if(n === r || r === 0) return 1; // 재귀 종료 설정 
+        else return dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r); // 결과값을 memoization 하기 위해서 dy arr 에 값을 저장함
+      }
+      answer = DFS(n, r);
+      return answer;
     }
 
-    console.log(solution(5, 3));
+    console.log(solution(33, 19));
   </script>
 </body>
 
