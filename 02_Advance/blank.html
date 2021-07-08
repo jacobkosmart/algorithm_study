@@ -7,40 +7,22 @@
 
 <body>
   <script>
-    function solution(board) {
-      let answer = 0;
-      let dx = [-1, 0, 1, 0];
-      let dy = [0, 1, 0, -1];
-      function DFS(x, y) {
-        if(x === 6 && y === 6) answer++; // [6, 6] 도착 했을때 answer 에 cnt ++
-        else {
-          for(let k = 0; k < 4; k++) {
-            let nx = x + dx[k];
-            let ny = y + dy[k];
-            if(nx >= 0 && nx <= 6 && ny >= 0 && ny <= 6 && board[nx][ny] === 0) { // boarder 가 넘어 가지 않은 범위 또는 board에서 0 일때 4방향으로 이동 탐색 
-              board[nx][ny] = 1; // 1로 check 를 걸고 가야지 다시 돌아오지 않음
-              DFS(nx, ny); // 좌표 이동
-              board[nx][ny] = 0; // 다시 back 할때, 0 으로 다시 check 를 풀어줘야 함
-            }
-          }
+    function solution() {
+      let answer = '';
+      let queue = [];
+      queue.push(1);
+      while(queue.length) {
+        let v = queue.shift();
+        answer += v + " ";
+        for (nv of [v * 2, v* 2 + 1]) {
+          if(nv > 7) continue;
+          queue.push(nv)
         }
       }
-      board[0][0] = 1;
-      DFS(0, 0);
       return answer;
     }
 
-    let arr = [
-      [0, 0, 0, 0, 0, 0, 0],
-      [0, 1, 1, 1, 1, 1, 0],
-      [0, 0, 0, 1, 0, 0, 0],
-      [1, 1, 0, 1, 0, 1, 1],
-      [1, 1, 0, 0, 0, 0, 1],
-      [1, 1, 0, 1, 1, 0, 0],
-      [1, 0, 0, 0, 0, 0, 0]
-    ];
-
-    console.log(solution(arr));
+    console.log(solution());
   </script>
 </body>
 
