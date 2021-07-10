@@ -7,30 +7,44 @@
 
 <body>
   <script>
-    function solution(s, e) {
+    function solution(board) {
       let answer = 0;
-      let ch = Array.from({ length : 10001 }, () => 0);
-      let dis = Array.from({ length : 10001 }, () => 0);
-      let queue = [];
-      ch[s] = 1;
-      queue.push(s);
-      dis[s] = 0;
-      while(queue.length) {
-        let x = queue.shift();
-        for(let nx of [x - 1, x + 1, x + 5]) {
-          if(nx === e) return dis[x] + 1;
-          if(nx > 0 && nx <= 10001 && ch[nx] === 0) {
-            ch[nx] = 1;
-            queue.push(nx);
-            dis[nx] = dis[x] + 1
+      let n = board.length;
+      let dx = [-1, -1, 0, 1, 1, 1, 0, -1];
+      let dy = [0, 1, 1, 1, 0, -1, -1, -1,];
+      function DFS(x, y) {
+        board[x][y] = 0;
+        for(let k = 0; k < 8; k++){
+          let nx = x + dx[k];
+          let ny = y + dy[k];
+          if(nx >= 0 && nx < n && ny >= 0 && ny < n && board[nx][ny] === 1) {
+            DFS(nx, ny);
           }
         }
       }
-      return answer;
+    
+      for(let i = 0; i < n; i++) {
+        for(let j = 0; j < n; j++) {
+          if(board[i][j] === 1) {
+            answer ++;
+            DFS(i, j)
+          }
+      }
     }
-    console.log(solution(8, 3));
+    return answer;
+  }
+    let arr = [
+      [1, 1, 0, 0, 0, 1, 0],
+      [0, 1, 1, 0, 1, 1, 0],
+      [0, 1, 0, 0, 0, 0, 0],
+      [0, 0, 0, 1, 0, 1, 1],
+      [1, 1, 0, 1, 1, 0, 0],
+      [1, 0, 0, 0, 1, 0, 0],
+      [1, 0, 1, 0, 1, 0, 0]
+    ];
+
+    console.log(solution(arr));
   </script>
 </body>
 
 </html>
-
