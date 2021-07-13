@@ -31,6 +31,9 @@
 
 ##  📌 풀이
 
+![image](https://user-images.githubusercontent.com/28912774/125374198-7c632e00-e3c1-11eb-8927-b4e8bcfb9341.png)
+![image](https://user-images.githubusercontent.com/28912774/125374201-7ec58800-e3c1-11eb-9abb-c91b35d8caba.png)
+![image](https://user-images.githubusercontent.com/28912774/125374206-81c07880-e3c1-11eb-9dd7-cbda1d19ca81.png)
 
 
 ```js
